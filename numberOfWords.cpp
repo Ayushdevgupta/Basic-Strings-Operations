@@ -1,17 +1,24 @@
-#include<iostream>
+#include <iostream>
+#include <cstring>
 using namespace std;
-int main()
-{
+
+int main() {
     char str[1000];
-    cout<<"Enter a string"<<endl;
-    cin>>str;
+    cout << "Enter a string:" << endl;
+    cin.getline(str, 1000);
+
     int count = 0;
-    for(int i = 0; str[i] != '\0'; i++)
-    {
-        if((str[i] >= 'A' && str[i] <= 'Z') || (str[i] >='a' && str[i] <='z'))
-        {
+    bool inWord = false;
+
+    for (int i = 0; str[i] != '\0'; i++) {
+        if (str[i] != ' ' && !inWord) {
+            inWord = true;
             count++;
+        } else if (str[i] == ' ') {
+            inWord = false;
         }
     }
-    cout<<count<<endl;
+
+    cout << "Number of words: " << count << endl;
+    return 0;
 }
